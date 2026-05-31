@@ -64,7 +64,9 @@ app.post("/submit", async (req, res) => {
     const { name, email, phoneno, message } = req.body;
     const newuser = new User({ name, email, phoneno, message });
     await newuser.save();
+
     // send email
+
 //     await transporter.sendMail({
 //       from:process.env.EMAIL,
 //       to: "sonu.webdesigner30@gmail.com",
@@ -77,13 +79,13 @@ app.post("/submit", async (req, res) => {
 // `,
 //     });
 
-    // await transporter.sendMail({
-    //   from:process.env.EMAIL,
-    //   to:email,
-    //   subject:"thankyou for submitting form",
-    //   html:`<h2> Welcome to AlphaFit <br>
-    //   thank you for submitting the form</h2>`
-    // });
+//     await transporter.sendMail({
+//       from:process.env.EMAIL,
+//       to:email,
+//       subject:"thankyou for submitting form",
+//       html:`<h2> Welcome to AlphaFit <br>
+//       thank you for submitting the form</h2>`
+//     });
 
     res.status(200).json({ message: "data submited successfully + email sent" });
   } catch (error) {

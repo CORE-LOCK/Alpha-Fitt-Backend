@@ -31,7 +31,7 @@ const userschema = new mongoose.Schema(
       // unique: true,
     },
     phoneno: {
-      type: Number,
+      type: String,
       required: true,
     },
     message:{
@@ -78,7 +78,7 @@ app.post("/submit", async (req, res) => {
     });
 
     await transporter.sendMail({
-      from:"sonusharma5129211@gmail.com",
+      from:process.env.EMAIL,
       to:email,
       subject:"thankyou for submitting form",
       html:`<h2> Welcome to AlphaFit <br>

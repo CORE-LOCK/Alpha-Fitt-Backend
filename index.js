@@ -45,13 +45,13 @@ const userschema = new mongoose.Schema(
 const User = mongoose.model("User", userschema);
 
 // nodemailer config
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.EMAIL,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
 
 // using middlewares
 app.use(cors());
@@ -65,25 +65,25 @@ app.post("/submit", async (req, res) => {
     const newuser = new User({ name, email, phoneno, message });
     await newuser.save();
     // send email
-    await transporter.sendMail({
-      from: "sonusharma5129211@gmail.com",
-      to: "sonu.webdesigner30@gmail.com",
-      subject: "New Form Submission",
-      html: `
-<h2>new form submission </h2>
-<p><strong>Name:</strong> ${name}</p>
-<p><strong>Email:</strong> ${email}</p>
-<p><strong>Phone No:</strong> ${phoneno}</p>
-`,
-    });
+//     await transporter.sendMail({
+//       from:process.env.EMAIL,
+//       to: "sonu.webdesigner30@gmail.com",
+//       subject: "New Form Submission",
+//       html: `
+// <h2>new form submission </h2>
+// <p><strong>Name:</strong> ${name}</p>
+// <p><strong>Email:</strong> ${email}</p>
+// <p><strong>Phone No:</strong> ${phoneno}</p>
+// `,
+//     });
 
-    await transporter.sendMail({
-      from:process.env.EMAIL,
-      to:email,
-      subject:"thankyou for submitting form",
-      html:`<h2> Welcome to AlphaFit <br>
-      thank you for submitting the form</h2>`
-    });
+    // await transporter.sendMail({
+    //   from:process.env.EMAIL,
+    //   to:email,
+    //   subject:"thankyou for submitting form",
+    //   html:`<h2> Welcome to AlphaFit <br>
+    //   thank you for submitting the form</h2>`
+    // });
 
     res.status(200).json({ message: "data submited successfully + email sent" });
   } catch (error) {

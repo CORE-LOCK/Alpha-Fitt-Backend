@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import nodemailer from "nodemailer";
-import { dotenv  } from "dotenv";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -12,9 +12,7 @@ const app = express();
 
 const mongodb = async () => {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@backend.rpofbua.mongodb.net/`,
-    );
+    await mongoose.connect(process.env.MONGODB_URL);
     console.log("database connected");
   } catch (error) {
     console.log(error, "can't conned to database");
